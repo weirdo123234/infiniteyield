@@ -1,0 +1,21 @@
+local medium = {}
+
+function medium.webhook(webhook, message, webhookUsername)
+    local data = {
+    ["content"] = message,
+    ["Username"] = webhookUsername
+}
+
+local json = game:GetService("HttpService"):JSONEncode(data)
+
+    http.request({
+        Url = webhookURL,
+        Method = "POST",
+        Headers = {
+            ["Content-Type"] = "application/json"
+        },
+        Body = json
+    })
+end
+
+return medium
